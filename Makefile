@@ -8,7 +8,7 @@ OMPFLAGS = -fopenmp
 
 all: mpi nompi
 
-nompi: struct.x checking.x
+nompi: struct.x checking.x handles.x
 
 mpi: type_size.exe
 
