@@ -20,8 +20,11 @@ mpi: type_size.exe
 
 clean:
 	-rm -rf *.dSYM
-	-rm -f *.x
 	-rm -f *.exe
+	-rm -f *.x
 	-rm -f *.o
+
+realclean: clean
+	-rm -f *.s
 
 
