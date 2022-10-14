@@ -2,6 +2,8 @@
 *.d
 
 # Object files
+*.s
+*.S
 *.o
 *.ko
 *.obj
@@ -29,6 +31,7 @@
 *.dylib
 
 # Executables
+*.x
 *.exe
 *.out
 *.app
