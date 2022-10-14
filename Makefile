@@ -6,7 +6,11 @@ CFLAGS += -Wall -Wextra #-Werror
 
 OMPFLAGS = -fopenmp
 
-all: struct.x type_size.exe
+all: mpi nompi
+
+nompi: struct.x checking.x
+
+mpi: type_size.exe
 
 %.x: %.c
 	$(CC) $(CFLAGS) $(OMPFLAGS) $< -o $@
