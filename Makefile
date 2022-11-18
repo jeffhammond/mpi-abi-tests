@@ -23,6 +23,7 @@ clean:
 	-rm -f *.exe
 	-rm -f *.x
 	-rm -f *.o
+	-rm -f a.out
 
 realclean: clean
 	-rm -f *.s
