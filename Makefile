@@ -2,7 +2,7 @@ CC = gcc-12
 MPICC = mpicc
 
 CFLAGS  = -g -Os
-CFLAGS += -Wall -Wextra #-Werror
+CFLAGS += -Wall -Wextra -Wpedantic #-Werror
 
 OMPFLAGS = -fopenmp
 
@@ -10,7 +10,7 @@ all: mpi nompi
 
 nompi: struct.x checking.x handles.x union.x
 
-mpi: type_size.exe thread-case.exe
+mpi: type_size.exe thread-case.exe name-mangling.exe
 
 %.x: %.c
 	$(CC) $(CFLAGS) $(OMPFLAGS) $< -o $@
