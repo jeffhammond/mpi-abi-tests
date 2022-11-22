@@ -17,7 +17,7 @@ int MPI_Ibcast(void *buffer, int count, MPI_Datatype datatype, int root, MPI_Com
     (void)buffer;
     (void)comm;
     (void)datatype;
-    request->val = root + count;
+    request = (void*) ((intptr_t)root ^ (intptr_t)count);
     return 0;
 }
 

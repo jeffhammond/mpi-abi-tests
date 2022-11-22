@@ -10,7 +10,7 @@ all: mpi nompi
 
 nompi: struct.x checking.x handles.x union.x struct-pointer-handles.x
 
-mpi: type_size.exe thread-case.exe name-mangling.exe
+mpi: type_size.exe thread-case.exe name-mangling.exe c2f2c.exe
 
 %.x: %.c
 	$(CC) $(CFLAGS) $(OMPFLAGS) $< -o $@
