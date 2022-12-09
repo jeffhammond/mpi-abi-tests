@@ -8,7 +8,7 @@ OMPFLAGS = -fopenmp
 
 all: mpi nompi
 
-nompi: struct.x checking.x handles.x union.x struct-pointer-handles.x
+nompi: struct.x checking.x handles.x union.x struct-pointer-handles.x pointer-constants.x
 
 mpi: type_size.exe thread-case.exe name-mangling.exe c2f2c.exe print-compile-time-constants.exe
 
