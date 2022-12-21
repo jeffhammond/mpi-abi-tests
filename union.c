@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#if 0
+#if 1
 typedef union
 {
     intptr_t ip;
@@ -20,6 +20,6 @@ int main(void)
 {
     handle h1={0};
     handle h2={1};
-    //if (h1==h2) return 1;
+    if (h1==h2) return 1;
     return 0;
 }
