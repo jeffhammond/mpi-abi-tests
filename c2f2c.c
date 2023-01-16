@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
         MPI_Type_free(&c[i]);
     }
     t1 = MPI_Wtime();
-    printf("MPI_Type_ffree : %lf\n", t1-t0);
+    printf("MPI_Type_free : %lf\n", t1-t0);
 
     free(c);
     free(f);
