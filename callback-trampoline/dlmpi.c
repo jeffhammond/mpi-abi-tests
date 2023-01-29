@@ -33,7 +33,7 @@ OMPI_Comm OMPI_COMM_WORLD;
 int (*MPICH_Comm_rank)(int,int*);
 int (*MPICH_Comm_size)(int,int*);
 typedef int MPICH_Comm;
-MPICH_Comm MPICH_COMM_WORLD = 0x44000000;
+const MPICH_Comm MPICH_COMM_WORLD = 0x44000000;
 
 int main(int argc, char* argv[])
 {
@@ -70,15 +70,13 @@ int main(int argc, char* argv[])
         //printf("MPI_Get_library_version = %s\n", lib_version);
 
         char * pos;
-        pos = strstr(lib_version, "MPICH");
-        if (pos != NULL) {
-            printf("The MPI is MPICH\n");
-            whose_mpi = MPICH;
-        }
         pos = strstr(lib_version, "Open MPI");
         if (pos != NULL) {
-            printf("The MPI is OMPI\n");
             whose_mpi = OMPI;
+        }
+        pos = strstr(lib_version, "MPICH");
+        if (pos != NULL) {
+            whose_mpi = MPICH;
         }
     }
 
@@ -89,26 +87,20 @@ int main(int argc, char* argv[])
         if (whose_mpi == OMPI)
         {
             OMPI_COMM_WORLD = dlsym(MPI, OMPI_COMM_WORLD_symbol);
-            if (OMPI_COMM_WORLD == NULL) {
-                printf("dlsym failed: %s\n", dlerror() );
-            } else {
-                printf("dlsym succeeded: %p\n", OMPI_COMM_WORLD);
-            }
             OMPI_Comm_rank = (int(*)(void*,int*))dlsym(MPI, "MPI_Comm_rank");
-            rc = OMPI_Comm_rank(OMPI_COMM_WORLD, &me);
             OMPI_Comm_size = (int(*)(void*,int*))dlsym(MPI, "MPI_Comm_size");
+            rc = OMPI_Comm_rank(OMPI_COMM_WORLD, &me);
             rc = OMPI_Comm_size(OMPI_COMM_WORLD, &np);
-            printf("I am %d of %d\n", me, np);
+            printf("OMPI: I am %d of %d\n", me, np);
         }
         else if (whose_mpi == MPICH)
         {
             MPICH_Comm_rank = (int(*)(int,int*))dlsym(MPI, "MPI_Comm_rank");
-            rc = MPICH_Comm_rank(MPICH_COMM_WORLD, &me);
             MPICH_Comm_size = (int(*)(int,int*))dlsym(MPI, "MPI_Comm_size");
+            rc = MPICH_Comm_rank(MPICH_COMM_WORLD, &me);
             rc = MPICH_Comm_size(MPICH_COMM_WORLD, &np);
-            printf("I am %d of %d\n", me, np);
+            printf("MPICH: I am %d of %d\n", me, np);
         }
-
     }
 
     rc = MPI_Finalize();
