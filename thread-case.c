@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <mpi.h>
 
+enum {
+  ABI_THREAD_SINGLE     = 0,
+  ABI_THREAD_FUNNELED   = 1,
+  ABI_THREAD_SERIALIZED = 2,
+  ABI_THREAD_MULTIPLE   = 3
+};
+
 int main(void)
 {
     int requested = MPI_THREAD_SERIALIZED, provided;
