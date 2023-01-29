@@ -1,6 +1,6 @@
 CC = clang
 
-CFLAGS  = -g -Os
+CFLAGS  = -g3 -O0
 CFLAGS += -Wall -Wextra -Wpedantic #-Werror
 LIBS	= -ldl
 
