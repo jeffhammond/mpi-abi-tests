@@ -24,12 +24,14 @@ int (*MPI_Finalize)(void);
 int (*MPI_Get_library_version)(char*,int*);
 
 // ABI-dependent symbols
+// OMPI
 int (*OMPI_Comm_rank)(void*,int*);
 int (*OMPI_Comm_size)(void*,int*);
 typedef void * OMPI_Comm;
 const char * OMPI_COMM_WORLD_symbol = "ompi_mpi_comm_world";
 OMPI_Comm OMPI_COMM_WORLD;
 
+// MPICH
 int (*MPICH_Comm_rank)(int,int*);
 int (*MPICH_Comm_size)(int,int*);
 typedef int MPICH_Comm;
