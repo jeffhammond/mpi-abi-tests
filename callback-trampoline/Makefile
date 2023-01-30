@@ -4,7 +4,7 @@ CFLAGS  = -g3 -O0
 CFLAGS += -Wall -Wextra -Wpedantic #-Werror
 LIBS	= -ldl
 
-all: dlmpi.x
+all: dlmpi.x jit.x
 
 %.x: %.c
 	$(CC) $(CFLAGS) $(OMPFLAGS) $< $(LIBS) -o $@
